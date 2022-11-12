@@ -8,11 +8,12 @@ int main()
   //  Check user input
 
   printf ( "%s\n", "ml' nob:" );
-	if ( scanf( "%d %c ", &linenumber, &check ) != 1 || linenumber > 9 || linenumber < 1 ) {
+	// Wrong input condition
+  if ( scanf( "%d %c ", &linenumber, &check ) != 1 || linenumber > 9 || linenumber < 1 ) {
 		printf ( "%s\n", "luj" );
 		return 1;
   }
-  // Determine output
+  // Determine output by user input
   else
   {
 	  printf("%s\n","Qapla'");
