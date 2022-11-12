@@ -5,12 +5,14 @@ int main()
 	int linenumber;
 	char check;
   
+  //  Check user input
+
   printf ( "%s\n", "ml' nob:" );
 	if ( scanf( "%d %c ", &linenumber, &check ) != 1 || linenumber > 9 || linenumber < 1 ) {
 		printf ( "%s\n", "luj" );
 		return 1;
-
-	}
+  }
+  // Determine output
   else
   {
 	  printf("%s\n","Qapla'");
