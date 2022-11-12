@@ -11,7 +11,10 @@ int main()
 	int currentDay = 0;
 	int amount = 1;
 	double increaseTrunc;
-	printf ("%s\n", "Zadejte kreditni urok [%]:");
+  
+  // Ask for input, check input for credit values
+
+  printf ("%s\n", "Zadejte kreditni urok [%]:");
 	if ( scanf (" %lf", &cInterest) != 1 || cInterest < 0)
 	{
 	printf ("%s\n", "Nespravny vstup.");
@@ -24,9 +27,12 @@ int main()
 	printf ("%s\n", "Nespravny vstup.");
 	return 1;
 	}
-
-	printf ("%s\n", "Zadejte transakce:");
-
+  
+  // Ask for input of transactions
+	
+  printf ("%s\n", "Zadejte transakce:");
+  
+  // Until input != 0 calculate interest
 	while ( amount != 0 )
 	{
 		if ( scanf (" %d, %d", &dayInput, &amount) != 2 || dayInput < currentDay)
