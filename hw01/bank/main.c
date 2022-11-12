@@ -15,17 +15,19 @@ int main()
   // Ask for input, check input for credit values
 
   printf ("%s\n", "Zadejte kreditni urok [%]:");
-	if ( scanf (" %lf", &cInterest) != 1 || cInterest < 0)
+	
+  if ( scanf (" %lf", &cInterest) != 1 || cInterest < 0)
 	{
-	printf ("%s\n", "Nespravny vstup.");
-	return 1;
+	  printf ("%s\n", "Nespravny vstup.");
+	  return 1;
 	}
 	
 	printf ("%s\n", "Zadejte debetni urok [%]:");
-	if ( scanf (" %lf", &dInterest) != 1 || dInterest < 0)
+	
+  if ( scanf (" %lf", &dInterest) != 1 || dInterest < 0)
 	{
-	printf ("%s\n", "Nespravny vstup.");
-	return 1;
+	  printf ("%s\n", "Nespravny vstup.");
+	  return 1;
 	}
   
   // Ask for input of transactions
