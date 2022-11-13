@@ -15,8 +15,8 @@ int main () {
 
 	if ( checkPointA != 2 ) 
 		{
-		printf ("%s\n", "Nespravny vstup.");
-		return 1;
+		  printf ("%s\n", "Nespravny vstup.");
+		  return 1;
 		}
 
 	printf ("%s\n", "Bod B:");
@@ -24,8 +24,8 @@ int main () {
 	
 	if ( checkPointB != 2 ) 
 		{
-		printf ("%s\n", "Nespravny vstup.");
-		return 1;
+  		printf ("%s\n", "Nespravny vstup.");
+	  	return 1;
 		}
 
 
@@ -34,14 +34,14 @@ int main () {
 
 	if ( checkPointC != 2 ) 
 		{
-		printf ("%s\n", "Nespravny vstup.");
-		return 1;
+	  	printf ("%s\n", "Nespravny vstup.");
+	  	return 1;
 		}
 
 	if ( ( (pointA[0] == pointB[0]) && (pointA[1] == pointB[1]) ) || ( (pointA[0] == pointC[0]) && (pointA[1] == pointC[1]) ) || ( (pointB[0] == pointC[0]) && (pointB[1] == pointC[1]) ) )
 		{
-		printf("%s\n", "Nektere body splyvaji.");
-		return 1;
+		  printf("%s\n", "Nektere body splyvaji.");
+		  return 1;
 		}
 
 	slopeAB = ( ( pointB[1] - pointA[1] ) / ( pointB [0] - pointA[0] ) );
@@ -59,11 +59,11 @@ int main () {
 			{
 			if ( pointB[0] > pointC[0] )
 				{
-				printf ("%s\n", "Prostredni je bod B.");
+		  		printf ("%s\n", "Prostredni je bod B.");
 				}
 				else
 				{
-				printf ("%s\n","Prostredni je bod C.");
+			  	printf ("%s\n","Prostredni je bod C.");
 				}
 			}
 
@@ -71,11 +71,11 @@ int main () {
 			{
 				if ( pointA[0] > pointC[0] )
 				{
-				printf ("%s\n", "Prostredni je bod A.");
+				  printf ("%s\n", "Prostredni je bod A.");
 				}
 				else
 				{
-				printf ("%s\n","Prostredni je bod C.");
+				  printf ("%s\n","Prostredni je bod C.");
 				}
 			}
 
@@ -83,11 +83,11 @@ int main () {
 			{
 				if ( pointB[0] > pointA[0] )
 				{
-				printf ("%s\n", "Prostredni je bod B.");
+				  printf ("%s\n", "Prostredni je bod B.");
 				}
 				else
 				{
-				printf ("%s\n","Prostredni je bod A.");
+				  printf ("%s\n","Prostredni je bod A.");
 				}
 			}
 		}
@@ -99,11 +99,11 @@ int main () {
 			{
 				if ( pointB[1] > pointC[1] )
 				{
-				printf ("%s\n", "Prostredni je bod B.");
+				  printf ("%s\n", "Prostredni je bod B.");
 				}
 				else
 				{
-				printf ("%s\n","Prostredni je bod C.");
+				  printf ("%s\n","Prostredni je bod C.");
 				}
 			}
 
@@ -111,11 +111,11 @@ int main () {
 			{
 				if ( pointA[1] > pointC[1] )
 				{
-				printf ("%s\n", "Prostredni je bod A.");
+				  printf ("%s\n", "Prostredni je bod A.");
 				}
 				else
 				{
-				printf ("%s\n","Prostredni je bod C.");
+				  printf ("%s\n","Prostredni je bod C.");
 				}
 			}
 
@@ -123,13 +123,12 @@ int main () {
 			{
 				if ( pointB[1] > pointA[1] )
 				{
-				printf ("%s\n", "Prostredni je bod B.");
+				  printf ("%s\n", "Prostredni je bod B.");
 				}
 				else
 				{
-				printf ("%s\n","Prostredni je bod A.");
+				  printf ("%s\n","Prostredni je bod A.");
 				}
-	
 			}
 		}
 		return 0;
@@ -137,6 +136,6 @@ int main () {
 	}
 	else 
 	{
-	printf ("%s\n","Body nelezi na jedne primce.");
+	  printf ("%s\n","Body nelezi na jedne primce.");
 	}
 }
