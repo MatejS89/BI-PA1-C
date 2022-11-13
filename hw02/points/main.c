@@ -8,7 +8,6 @@ double slopeAB, slopeBC;
 double sum;
 double maxX, maxY;
 
-
 int main () {
 	// Ask for inputs, check inputs
   printf ("%s\n", "Bod A:");
@@ -139,7 +138,6 @@ int main () {
 			}
 		}
 		return 0;
-		
 	}
 	else 
 	{
