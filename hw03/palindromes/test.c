@@ -16,6 +16,8 @@ int nextPalindrome ( unsigned long long from,
   int s, end;
   int conversion[65];
 
+  // Input conditions
+
   if ( from < 0
     || from >= ULONG_MAX
     || radix < 2
@@ -24,6 +26,8 @@ int nextPalindrome ( unsigned long long from,
     {
       return 0;
     }
+
+  // Conversion from base 10 to radix
 
   do
   {
@@ -42,6 +46,8 @@ int nextPalindrome ( unsigned long long from,
     s = i-1;
     int odd = s % 2;
     q = 0;
+
+  // Check if number is palindrome after conversion
 
     while ( conversion[q] == conversion[s])
     {
