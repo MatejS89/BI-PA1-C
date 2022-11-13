@@ -10,7 +10,8 @@ double maxX, maxY;
 
 
 int main () {
-	printf ("%s\n", "Bod A:");
+	// Ask for inputs, check inputs
+  printf ("%s\n", "Bod A:");
 	checkPointA = scanf ("%lf %lf", &pointA[0], &pointA[1]);
 
 	if ( checkPointA != 2 ) 
@@ -38,16 +39,21 @@ int main () {
 	  	return 1;
 		}
 
+  // Check if any points are the same
+
 	if ( ( (pointA[0] == pointB[0]) && (pointA[1] == pointB[1]) ) || ( (pointA[0] == pointC[0]) && (pointA[1] == pointC[1]) ) || ( (pointB[0] == pointC[0]) && (pointB[1] == pointC[1]) ) )
 		{
 		  printf("%s\n", "Nektere body splyvaji.");
 		  return 1;
 		}
+  
+  // Calculate the slope between 2 pairs of points
 
 	slopeAB = ( ( pointB[1] - pointA[1] ) / ( pointB [0] - pointA[0] ) );
 	slopeBC = ( ( pointC[1] - pointB[1] ) / ( pointC [0] - pointB[0] ) );
 
 	sum = fabs ( slopeAB + slopeBC );
+
 	if ( slopeAB == slopeBC || fabs (slopeAB - slopeBC) <= ERROR * sum || ( (pointA[0] == pointB[0]) && (pointC[0] == pointB[0]) && (pointC[0] == pointA[0]) ) )
 	{
 		printf ("%s\n", "Body lezi na jedne primce.");
@@ -57,6 +63,7 @@ int main () {
 			maxX = maxX > pointC[0] ? maxX : pointC[0];
 			if ( maxX == pointA[0])
 			{
+      // Decide which point is the middle one
 			if ( pointB[0] > pointC[0] )
 				{
 		  		printf ("%s\n", "Prostredni je bod B.");
