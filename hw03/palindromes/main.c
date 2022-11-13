@@ -13,7 +13,11 @@ int main ( )
   int end;
   int s;
   int conversion[65];
+
+  // Input conditions
+
   numberOfInputs = scanf ( " %llu, %d", &from, &radix );
+
   if ( numberOfInputs != 2
     || from < 0
     || from >= ULONG_MAX
@@ -23,6 +27,8 @@ int main ( )
     {
       return 1;
     }
+
+  // Conversion from base 10 to radix
 
   do
   {
@@ -41,6 +47,8 @@ int main ( )
     s = i-1;
     int odd = s % 2;
     q = 0;
+
+  // Check if number is palindrome after conversion
     
     while ( conversion[q] == conversion[s])
     {
