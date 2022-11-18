@@ -43,6 +43,7 @@ void checkSameElements( int sumArray[], int * sumIndex, int * sameSum )
 			}
 		}
 	}
+	
 	printf ( "Pocet dvojic: %d\n", *sameSum );
 }
 
@@ -64,6 +65,7 @@ int main( void )
 	if ( arrLength == 0 || arrLength > 2000 || ( ! feof ( stdin ) ) )
 	{
 		printf ("%s\n", "Nespravny vstup.");
+		free ( sumArray );
 		return 1;
 	}
 
@@ -82,6 +84,7 @@ int main( void )
 			printf("\n%d", sumArray[p]);
 			p++;
 		}
-*/	
-	free( sumArray );
+*/
+	free ( sumArray );
+	return 0;
 }
