@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 void intervalAdjust( int *intervalBeg, int *intervalEnd, char firstChar, char lastChar )
 {
 	if ( *intervalBeg < 0 )
@@ -22,7 +23,7 @@ void intervalAdjust( int *intervalBeg, int *intervalEnd, char firstChar, char la
 int checkArray( int intervalBeg, int intervalEnd, int arrayIndex, int gradesArray[] )
 {
 	int elementCount = 0;
-	for ( int i = 0; i < arrayIndex; i++ )
+	for ( int i = 0; i <= arrayIndex; i++ )
 	{
 		if ( ( gradesArray[i] >= intervalBeg ) && ( gradesArray[i] <= intervalEnd ) )
 		{
@@ -37,35 +38,55 @@ int main ( void )
 	char beginInputBracket, endInputBracket;
 	char firstChar, lastChar;
 	int grade;
-	int arrayIndex = 0;
-	int gradesArray[1000];
+	int arrayIndex;
+	int arraySize = 10;
+	int * gradesArray;
 	int intervalBeg, intervalEnd;
 	int conversions;
 	
 	printf ( "%s\n", "Pocty bodu:");
 
+	gradesArray = ( int * ) calloc( arraySize, sizeof( int ) );
+
 	scanf ( "%c", &beginInputBracket );
 
 	if ( beginInputBracket == '{' )
 	{
-		while ( scanf ( "%c%d%c", &firstChar, &grade, &lastChar ) == 3 && firstChar == ' ' )
+		while ( ( conversions = scanf ( "%c%d%c", &firstChar, &grade, &lastChar ) ) == 3 && firstChar == ' ' )
+		{
+
+			if ( grade <= 0 || grade >= 1000000000 || lastChar == '\n' )
 			{
-				gradesArray[arrayIndex] = grade;
-				arrayIndex++;
-				if ( grade <= 0 || grade >= 1000000000 )
+				printf ("%s\n", "Nespravny vstup." );
+				return 1;
+			}
+
+			if ( lastChar != ',' && lastChar == '}' )
+			{
+				break;
+			}
+
+			if ( lastChar == ' ' )
+			{
+				scanf ( "%c", &endInputBracket );
+				if ( endInputBracket != '}' )
 				{
 					printf ("%s\n", "Nespravny vstup." );
 					return 1;
 				}
-				if ( lastChar != ',' )
+				else
 				{
 					break;
 				}
 			}
-		if ( scanf ( " %c", &endInputBracket ) && endInputBracket != '}' )
-		{
-			printf ("%s\n", "Nespravny vstup." );
-			return 1;
+			arrayIndex++;
+			if ( arrayIndex >= arraySize - 1 )
+			{
+				arraySize = arraySize * 2; 
+				gradesArray = ( int * )realloc ( gradesArray, arraySize * sizeof ( int ) );
+			}
+			gradesArray[arrayIndex] = grade;
+			
 		}
 	}
 	else
@@ -74,6 +95,11 @@ int main ( void )
 		return 1;
 	}
 	
+	if ( conversions != 3 )
+	{
+		printf ("%s\n", "Nespravny vstup." );
+		return 1;
+	}
 
 	printf ( "%s\n" , "Intervaly:" );
 
@@ -103,6 +129,7 @@ int main ( void )
 		{
 			printf ( "%s\n", "Nespravny vstup." );
 			return 1;
+			free ( gradesArray );
 		}
 	}
 
