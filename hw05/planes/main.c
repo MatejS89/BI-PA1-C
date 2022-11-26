@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#define EPS 1e-6
+#define EPS 1e-10
 
 typedef struct
 {
@@ -17,6 +17,13 @@ typedef struct
 	char planeName1[200];
 	char planeName2[200];
 } Pairs;
+
+
+int loadStudent ( Plane * arr, unsigned long long countArr )
+{
+	int res = scanf ( "%lf,%lf: %199s", &arr[countArr].xCoord, &arr[countArr].yCoord, arr[countArr].planeName );
+	return res == 3;
+}
 
 int distCmp ( const void * d1, const void * d2 )
 {
@@ -36,18 +43,17 @@ int main ()
 	unsigned long long capacityArr = 5;
 	unsigned long long pairCount = 0;
 	unsigned long long capacityPairs = 5;
-	int inputCheck;
 	arr = ( Plane * ) malloc ( sizeof ( Plane ) * capacityArr );
 	pairs = ( Pairs * ) malloc ( sizeof ( Pairs ) * capacityPairs );
 
 	printf ( "%s\n", "Pozice letadel:" );
 
-	do
+	while ( !feof( stdin ) )
 	{
-		inputCheck = ( scanf ( "%lf,%lf: %199s", &arr[countArr].xCoord, &arr[countArr].yCoord, arr[countArr].planeName ) ) ;
-		if ( inputCheck != 3 )
+		int inputCheck = loadStudent ( arr, countArr );
+		if ( inputCheck == 0 )
 		{
-			printf ( "%s\n", "\nNespravny vstup.");
+			printf ( "%s\n", "Nespravny vstup.");
 			free ( pairs );
 			free ( arr );
 			return 1;
@@ -59,11 +65,11 @@ int main ()
 			capacityArr *= 2;
 			arr = ( Plane * ) realloc ( arr, sizeof ( Plane ) * capacityArr );
 		}
-	} while ( ( inputCheck == 3 ) );
+	}
 
 	if ( countArr < 2 )
 	{
-		printf ( "%s\n", "\nNespravny vstup.");
+		printf ( "%s\n", "Nespravny vstup.");
 		free ( pairs );
 		free ( arr );
 		return 1;
@@ -101,7 +107,7 @@ int main ()
 		matchPairs++;
 		i++;
 	}
-	printf ( "\nNejblizsi vzdalenost letadel: %lf\n", matchValue );
+	printf ( "\nVzdalenost nejblizsich letadel: %lf\n", matchValue );
 	printf ( "Nalezenych dvojic: %lld\n", matchPairs );
 	for ( long long unsigned i = 0; i < matchPairs; i++ )
 	{
