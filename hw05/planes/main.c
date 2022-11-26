@@ -56,7 +56,7 @@ int main ()
 		}
 
 		countArr++;
-		
+
 		if ( countArr >= capacityArr - 1 )
 		{
 			if ( capacityArr < 1000 )
@@ -86,7 +86,7 @@ int main ()
 	}
 */
 
-	double distMin;
+	double distMin = 0;
 	double currentDist;
 	for ( unsigned long long i = 0; i < countArr - 1; i++ )
 	{
@@ -110,7 +110,7 @@ int main ()
 				{
 					capacityPairs += 100;
 					pairs = ( Pairs * ) realloc ( pairs, sizeof ( Pairs ) * capacityPairs );
-					if ( pairs == NULL)
+					if ( pairs == NULL )
 					{
 						printf ("%s\n","REALLOC FAILED1");
 					}
@@ -128,6 +128,10 @@ int main ()
 
 			if ( fabs ( currentDist - distMin ) <= EPS * fabs ( currentDist + distMin ))
 			{
+				/*
+				pairs[pairCount].planeName1 = arr[i].planeName;
+				pairs[pairCount].planeName2 = arr[q].planeName;
+				*/
 				strcpy ( pairs[pairCount].planeName1, arr[i].planeName );
  				strcpy ( pairs[pairCount].planeName2, arr[q].planeName );
 				pairCount++;
