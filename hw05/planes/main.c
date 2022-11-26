@@ -79,12 +79,6 @@ int main ()
 		free ( arr );
 		return 1;
 	}
-/*
-	for ( unsigned long long i = 0; i < countArr; i++ )
-	{
-		printf ( "%lf %lf %s", arr[i].xCoord, arr[i].yCoord, arr[i].planeName );
-	}
-*/
 
 	double distMin = 0;
 	double currentDist;
@@ -128,10 +122,6 @@ int main ()
 
 			if ( fabs ( currentDist - distMin ) <= EPS * fabs ( currentDist + distMin ))
 			{
-				/*
-				pairs[pairCount].planeName1 = arr[i].planeName;
-				pairs[pairCount].planeName2 = arr[q].planeName;
-				*/
 				strcpy ( pairs[pairCount].planeName1, arr[i].planeName );
  				strcpy ( pairs[pairCount].planeName2, arr[q].planeName );
 				pairCount++;
@@ -150,22 +140,6 @@ int main ()
 		}
 	}
 	free ( arr );
-//qsort ( pairs, pairCount, sizeof ( Pairs ), distCmp );
-
-	/*for ( long long unsigned i = 0; i < pairCount; i++ )
-	{
-		printf ( "LIETADLO %llu %lf %s %s\n", i, pairs[i].dist, pairs[i].planeName1, pairs[i].planeName2 );
-	}
-
-	unsigned long long matchPairs = 0, i = 0;
-	double matchValue = pairs[0].dist;
-	
-	while ( ( pairs[i].dist - matchValue <= EPS * ( pairs[i].dist + matchValue ) || pairs[i].dist == matchValue ) && ( i < pairCount ) )
-	{
-		matchPairs++;
-		i++;
-	}
-*/
 
 	printf ( "Vzdalenost nejblizsich letadel: %lf\n", distMin );
 	printf ( "Nalezenych dvojic: %lld\n", pairCount );
@@ -174,17 +148,6 @@ int main ()
 		printf ( "%s - %s\n", pairs[i].planeName1, pairs[i].planeName2 );
 	}
 
-	/*for ( size_t i = 0; i < count; i++ )
-	{
-		printf ( "%lf %lf %s\n", arr[i].xCoord, arr[i].yCoord, arr[i].planeName );
-	}*/
-
-	/*
-	for ( unsigned long long i = 0; i < pairCount; i++ )
-	{
-		printf ( "%lf %s %s\n", pairs[i].dist, pairs[i].planeName1, pairs[i].planeName2 );
-	}
-*/
 	free (pairs);
 	return 0;
 }
