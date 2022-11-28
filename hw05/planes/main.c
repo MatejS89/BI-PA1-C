@@ -19,7 +19,7 @@ typedef struct
 } Pairs;
 
 // Calculate distance between two points, return a double value of distance
-double calculateDist ( Plane * arr, unsigned long long i, unsigned long long q )
+double calculateDist ( Plane * arr, int i, int q )
 {
 	double x1 = arr[i].xCoord;
 	double y1 = arr[i].yCoord;
@@ -31,7 +31,7 @@ double calculateDist ( Plane * arr, unsigned long long i, unsigned long long q )
 }
 
 // Add pair of planes to a struct in pair array
-void addPair ( Plane * arr, Pairs * pairs, unsigned long long * pairCount, unsigned long long i, unsigned long long q )
+void addPair ( Plane * arr, Pairs * pairs, int * pairCount, int i, int q )
 {
 	strcpy ( pairs[* pairCount].planeName1, arr[i].planeName );
 	strcpy ( pairs[* pairCount].planeName2, arr[q].planeName );
@@ -46,7 +46,7 @@ void invalidInput ( Plane * arr, Pairs * pairs )
 }
 
 // Realloc size of input array according to current capacity, smaller realloc for values <1000
-void reallocArr ( unsigned long long * capacityArr, Plane ** arr )
+void reallocArr ( int * capacityArr, Plane ** arr )
 {
 	if ( * capacityArr < 1000 )
 	{
@@ -60,14 +60,14 @@ void reallocArr ( unsigned long long * capacityArr, Plane ** arr )
 	}
 }
 
-int decidePair ( Plane * arr, Pairs ** pairs, double * distMin, unsigned long long countArr, unsigned long long * capacityPairs ) 
+int decidePair ( Plane * arr, Pairs ** pairs, double * distMin, int countArr, int * capacityPairs ) 
 {
-	unsigned long long pairCount = 0;
+	int pairCount = 0;
 
 	// Go through indices of Plane array
-	for ( unsigned long long i = 0; i < countArr; i++ )
+	for ( int i = 0; i < countArr; i++ )
 	{
-		for ( unsigned long long q = i + 1; q <= countArr; q++ )
+		for ( int q = i + 1; q <= countArr; q++ )
 		{
 			double currentDist = calculateDist ( arr, i, q );
 			
@@ -116,9 +116,9 @@ int main ()
 {
 	Pairs *pairs;
 	Plane *arr;
-	unsigned long long countArr = 0;
-	unsigned long long capacityArr = 100;
-	unsigned long long capacityPairs = 100;
+	int countArr = 0;
+	int capacityArr = 100;
+	int capacityPairs = 100;
 	int inputCheck;
 	arr = ( Plane * ) malloc ( sizeof ( Plane ) * capacityArr );
 	pairs = ( Pairs * ) malloc ( sizeof ( Pairs ) * capacityPairs );
@@ -152,13 +152,13 @@ int main ()
 	double distMin = 0;
 	countArr--; // Adjustment to use as index in function
 
-	unsigned long long pairCount = decidePair ( arr, &pairs, &distMin, countArr, &capacityPairs );
+	int pairCount = decidePair ( arr, &pairs, &distMin, countArr, &capacityPairs );
 
 	printf ( "Vzdalenost nejblizsich letadel: %lf\n", distMin );
-	printf ( "Nalezenych dvojic: %lld\n", pairCount );
+	printf ( "Nalezenych dvojic: %d\n", pairCount );
 	
 	// Print pair array
-	for ( unsigned long long i = 0; i < pairCount; i++ )
+	for ( int i = 0; i < pairCount; i++ )
 	{
 		printf ( "%s - %s\n", pairs[i].planeName1, pairs[i].planeName2 );
 	}
