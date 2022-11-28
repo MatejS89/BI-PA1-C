@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 void intervalAdjust( int *intervalBeg, int *intervalEnd, char firstChar, char lastChar )
 {
 	if ( *intervalBeg < 0 )
@@ -38,15 +37,16 @@ int main ( void )
 	char beginInputBracket, endInputBracket;
 	char firstChar, lastChar;
 	int grade;
-	int arrayIndex;
+	int arrayIndex = 0;
 	int arraySize = 10;
 	int * gradesArray;
-	int intervalBeg, intervalEnd;
+	int intervalBeg = 0;
+	int intervalEnd = 0;
 	int conversions;
 	
 	printf ( "%s\n", "Pocty bodu:");
 
-	gradesArray = ( int * ) calloc( arraySize, sizeof( int ) );
+	gradesArray = ( int * ) malloc( arraySize * sizeof( int ) );
 
 	scanf ( "%c", &beginInputBracket );
 
@@ -54,10 +54,10 @@ int main ( void )
 	{
 		while ( ( conversions = scanf ( "%c%d%c", &firstChar, &grade, &lastChar ) ) == 3 && firstChar == ' ' )
 		{
-
-			if ( grade <= 0 || grade >= 1000000000 || lastChar == '\n' )
+			if ( grade < 0 || grade > 1000000000 || lastChar == '\n' )
 			{
 				printf ("%s\n", "Nespravny vstup." );
+				free( gradesArray );
 				return 1;
 			}
 
@@ -72,6 +72,7 @@ int main ( void )
 				if ( endInputBracket != '}' )
 				{
 					printf ("%s\n", "Nespravny vstup." );
+					free ( gradesArray );
 					return 1;
 				}
 				else
@@ -79,25 +80,28 @@ int main ( void )
 					break;
 				}
 			}
-			arrayIndex++;
+			
 			if ( arrayIndex >= arraySize - 1 )
 			{
 				arraySize = arraySize * 2; 
 				gradesArray = ( int * )realloc ( gradesArray, arraySize * sizeof ( int ) );
 			}
 			gradesArray[arrayIndex] = grade;
+			arrayIndex++;
 			
 		}
 	}
 	else
 	{
 		printf ("%s\n", "Nespravny vstup." );
+		free (gradesArray);
 		return 1;
 	}
 	
 	if ( conversions != 3 )
 	{
 		printf ("%s\n", "Nespravny vstup." );
+		free ( gradesArray );
 		return 1;
 	}
 
@@ -108,6 +112,7 @@ int main ( void )
 		if ( conversions != 4 )
 		{
 			printf ( "%s\n", "Nespravny vstup." );
+			free ( gradesArray );
 			return 1;
 		}
 
@@ -128,8 +133,8 @@ int main ( void )
 		else 
 		{
 			printf ( "%s\n", "Nespravny vstup." );
-			return 1;
 			free ( gradesArray );
+			return 1;
 		}
 	}
 
@@ -141,5 +146,6 @@ int main ( void )
 		printf ( "%d\n", gradesArray[i] );
 	}*/
 
+	free ( gradesArray );
 	return 0;
 }
