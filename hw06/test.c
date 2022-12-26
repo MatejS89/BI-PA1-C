@@ -6,16 +6,18 @@
 #include <assert.h>
 #endif /* __PROGTEST__ */
 
-int dictCheck ( const char * (*replace)[2] )
+int nullInDictCheck ( const char * (*replace)[2] )
 {
-	int m = 0;
-	int n = 1;
-	int prefixLen = 0;
-	int compLen = 0;
 	int i = 0;
 
 	while ( replace[i][0] != NULL )
+	{	
+		if ( (replace[i][0])[0] == '\0' )
+		{
+			return 0;
+		}
 		i++;
+	}
 
 	int j = 0;
 
@@ -23,18 +25,23 @@ int dictCheck ( const char * (*replace)[2] )
 		j++;
 		
 	if ( i != j )
+		return 1;
+	else
+		return 0;
+}
+
+int dictCheck ( const char * (*replace)[2] )
+{
+	int m = 0;
+	int n = 1;
+	int prefixLen = 0;
+	int compLen = 0;
+
+	if ( nullInDictCheck ( replace ) == 1 )
 		return 0;
 
 	while ( replace[m][0] != NULL )
 	{
-		if ( (replace[m][0])[0] == '\0' )
-		{
-			if ( (replace[m][1])[0] != '\0' )
-			{
-			return 0;
-			}
-		}
-		
 		while ( replace[n][0] != NULL )
 		{
 			prefixLen = strlen ( replace[m][0] );
@@ -149,7 +156,7 @@ int main ( int argc, char * argv [] )
   const char * d2 [][2] =
   {
 		{ "failure", "non-traditional success" },
-		{ "fail", "uboptimals result" },
+		{ "fail", "suboptimal result" },
     { NULL, NULL }
   };
 
